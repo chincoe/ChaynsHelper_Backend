@@ -11,6 +11,7 @@
     <PackageVersion>0.0.6</PackageVersion>
     <RepositoryUrl>https://github.com/chincoe/ChaynsHelper_Backend</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/chincoe/ChaynsHelper_Backend/main/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
