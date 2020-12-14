@@ -9,9 +9,9 @@ namespace ChaynsHelper.RequestHelper
     {
         public static void AddRequestHelper(this IServiceCollection services)
         {
-            var client = new HttpClient();
-            client.AddRequestHelperDefaults();
-            services.AddSingleton<IRequestHelper>(x => new RequestHelper(x.GetService<ILogger<RequestHelper>>(), client));
+            services.AddHttpClient<IHttpClientFactory>("RequestHelper", client =>
+                client.AddRequestHelperDefaults());
+            services.AddSingleton<IRequestHelper, RequestHelper>();
         }
 
         public static void AddRequestHelperDefaults(this HttpClient client)
