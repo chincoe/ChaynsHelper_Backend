@@ -43,7 +43,7 @@ namespace ChaynsHelper.RequestInfoContextProvider
             return !nullable2.HasValue ? this.GetContextUid() : nullable2;
         }
 
-        public double? GetCustomNumber() => new double?();
+        public double? GetCustomNumber() => default;
 
         public int? GetLocationId()
         {
@@ -58,11 +58,7 @@ namespace ChaynsHelper.RequestInfoContextProvider
             return locationId;
         }
 
-        public string GetSiteId()
-        {
-            return null;
-            // throw new NotImplementedException();
-        }
+        public string GetSiteId() => default;
 
         public string GetCustomText()
         {
@@ -92,10 +88,6 @@ namespace ChaynsHelper.RequestInfoContextProvider
             return personId;
         }
 
-        public string GetOperatingSystem()
-        {
-            return null;
-            // throw new NotImplementedException();
-        }
+        public string GetOperatingSystem() => default;
     }
 }
