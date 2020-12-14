@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace ChaynsHelper.RequestHelper
 {
@@ -10,7 +11,7 @@ namespace ChaynsHelper.RequestHelper
         {
             var client = new HttpClient();
             client.AddRequestHelperDefaults();
-            services.AddSingleton<IRequestHelper, RequestHelper>();
+            services.AddSingleton<IRequestHelper>(x => new RequestHelper(x.GetService<ILogger<RequestHelper>>(), client));
         }
 
         public static void AddRequestHelperDefaults(this HttpClient client)

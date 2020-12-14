@@ -1,5 +1,5 @@
 ﻿using System;
-using Auth.Models;
+using Chayns.Auth.Shared;
 using Microsoft.AspNetCore.Http;
 using TobitLogger.Core;
 using TobitLogger.Middleware;

@@ -25,9 +25,10 @@ namespace ChaynsHelper.RequestHelper
             _httpClient.AddRequestHelperDefaults();
         }
 
-        public RequestHelper(ILogger<RequestHelper> logger, HttpClient clientFactory)
+        public RequestHelper(ILogger<RequestHelper> logger, HttpClient client)
         {
             _logger = logger;
+            _httpClient = client;
         }
 
         public async Task<Response<string>> Request(
