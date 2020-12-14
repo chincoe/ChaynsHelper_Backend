@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
     <Company>Tobit Laboratories AG</Company>
     <Product>ChaynsHelper_Backend</Product>
     <Authors>Christian Nagel</Authors>
@@ -12,6 +11,7 @@
     <RepositoryUrl>https://github.com/chincoe/ChaynsHelper_Backend</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://raw.githubusercontent.com/chincoe/ChaynsHelper_Backend/main/LICENSE</PackageLicenseUrl>
+    <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.1</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
