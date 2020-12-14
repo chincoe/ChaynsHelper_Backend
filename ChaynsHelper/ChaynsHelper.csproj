@@ -6,21 +6,25 @@
     <Product>ChaynsHelper_Backend</Product>
     <Authors>Christian Nagel</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.1</Version>
     <PackageId>ChaynsHelper_Backend</PackageId>
     <Description>A small unofficial helper library for my personal helpers</Description>
-    <PackageVersion>0.0.2</PackageVersion>
+    <PackageVersion>0.0.3</PackageVersion>
+    <RepositoryUrl>https://github.com/chincoe/ChaynsHelper_Backend</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.78" />
+    <PackageReference Include="Chayns.Auth.ApiExtensions" Version="2.2.46" />
+    <PackageReference Include="Chayns.Auth.Shared" Version="2.2.46" />
+    <PackageReference Include="Dapper" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
-    <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="morelinq" Version="3.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="TobitLogger.Core" Version="5.6.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.0" />
+    <PackageReference Include="TobitLogger.Core" Version="5.3.0" />
+    <PackageReference Include="TobitLogger.Middleware" Version="5.3.0" />
     <PackageReference Include="TobitTextLib" Version="1.0.8" />
-    <PackageReference Include="TobitWebApiExtensionsCore" Version="2.0.33" />
+    <PackageReference Include="TobitWebApiExtensionsCore" Version="2.0.10" />
   </ItemGroup>
 
 </Project>
