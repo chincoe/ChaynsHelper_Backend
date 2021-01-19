@@ -58,8 +58,6 @@ namespace ChaynsHelper.RequestInfoContextProvider
             return locationId;
         }
 
-        public string GetSiteId() => default;
-
         public string GetCustomText()
         {
             IHttpContextAccessor contextAccessor = this._contextAccessor;
