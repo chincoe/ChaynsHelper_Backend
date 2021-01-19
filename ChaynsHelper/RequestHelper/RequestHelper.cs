@@ -174,7 +174,8 @@ namespace ChaynsHelper.RequestHelper
             {
                 ContractResolver =
                     camelCase ? new CamelCasePropertyNamesContractResolver() : new DefaultContractResolver(),
-                NullValueHandling = ignoreNullValues ? NullValueHandling.Ignore : NullValueHandling.Include
+                NullValueHandling = ignoreNullValues ? NullValueHandling.Ignore : NullValueHandling.Include,
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
             };
             var request = new HttpRequestMessage(method ?? new HttpMethod("GET"), url);
             if (authorization != null)
