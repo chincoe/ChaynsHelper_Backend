@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>ChaynsHelper_Backend</PackageId>
     <Description>A small unofficial helper library for my personal helpers</Description>
-    <PackageVersion>0.1.2</PackageVersion>
+    <PackageVersion>0.1.3</PackageVersion>
     <RepositoryUrl>https://github.com/chincoe/ChaynsHelper_Backend</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://raw.githubusercontent.com/chincoe/ChaynsHelper_Backend/main/LICENSE</PackageLicenseUrl>
