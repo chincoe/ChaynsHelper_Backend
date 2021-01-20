@@ -63,5 +63,10 @@ namespace ChaynsHelper.InternalServices.Websocket
                 });  
             }
         }
+
+        public async Task SendWebsocketMessage(string topic, object data, Condition conditions)
+        {
+            await SendWebsocketMessage(topic, data, (object) conditions);
+        }
     }
 }
