@@ -2,9 +2,12 @@
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
-using Chayns.Auth.Shared.Extensions;
-using Chayns.Auth.Shared.Helpers;
+using Chayns.Errors.Handling.Helpers;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using AssemblyExtensions = Chayns.Auth.Shared.Extensions.AssemblyExtensions;
+using EnvironmentHelper = Chayns.Auth.Shared.Helpers.EnvironmentHelper;
 
 namespace ChaynsHelper.RequestHelper
 {
@@ -12,14 +15,38 @@ namespace ChaynsHelper.RequestHelper
     {
         public static void AddRequestHelper(this IServiceCollection services)
         {
+            services.AddRequestHelperHttpClient();
+        }
+        
+        /// <summary>
+        /// Add a request helper using an http client
+        /// </summary>
+        /// <param name="services"></param>
+        public static void AddRequestHelperHttpClient(this IServiceCollection services)
+        {
             services.AddHttpClient<RequestHelper>("RequestHelper", client =>
                 client.AddRequestHelperDefaults());
-            services.AddSingleton<IRequestHelper, RequestHelper>();
+            services.AddSingleton<IRequestHelper>(x =>
+                new RequestHelper(x.GetService<ILogger<RequestHelper>>(), x.GetService<IHttpClientFactory>()));
+        }
+        
+        /// <summary>
+        /// Add a request helper using a chayns errors web client
+        /// </summary>
+        /// <param name="services"></param>
+        public static void AddRequestHelperWebClient(this IServiceCollection services)
+        {
+            services.TryAddSingleton<IWebClientFactory, WebClientFactory>();
+            services.AddSingleton<IRequestHelper>(x =>
+                new RequestHelper(x.GetService<ILogger<RequestHelper>>(), x.GetService<IHttpClientFactory>()));
         }
 
         public static void AddRequestHelperDefaults(this HttpClient client)
         {
-            client.DefaultRequestHeaders.Add("User-Agent", GetDefaultUserAgent());
+            if (client.DefaultRequestHeaders.UserAgent == default)
+            {
+                client.DefaultRequestHeaders.Add("User-Agent", GetDefaultUserAgent());
+            }
         }
 
         /// <summary>
@@ -35,11 +62,11 @@ namespace ChaynsHelper.RequestHelper
             if (projectName != null)
             {
                 sb.Append(projectName);
-                sb.Append($"/{Assembly.GetEntryAssembly().GetVersion()} ");
+                sb.Append($"/{AssemblyExtensions.GetVersion(Assembly.GetEntryAssembly())} ");
             }
 
             sb.Append(Assembly.GetExecutingAssembly().GetName().Name + "/");
-            sb.Append(Assembly.GetExecutingAssembly().GetVersion());
+            sb.Append(AssemblyExtensions.GetVersion(Assembly.GetExecutingAssembly()));
 
             sb.Append(" (");
             sb.Append(EnvironmentHelper.GetPrettyOsName());
