@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Chayns.Errors.Handling.Helpers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Newtonsoft.Json;
@@ -25,6 +26,13 @@ namespace ChaynsHelper.RequestHelper
             _httpClient.AddRequestHelperDefaults();
         }
 
+        public RequestHelper(ILogger<RequestHelper> logger, IWebClientFactory clientFactory)
+        {
+            _logger = logger;
+            _httpClient = clientFactory.GetClient(this);
+            _httpClient.AddRequestHelperDefaults();
+        }
+        
         public RequestHelper(ILogger<RequestHelper> logger, IHttpClientFactory clientFactory)
         {
             _logger = logger;
