@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
- namespace ChaynsHelper.InternalServices.TextString
+namespace ChaynsHelper.InternalServices.TextString
 {
     public interface ITextStringHelper
     {
@@ -28,12 +28,13 @@
         /// <param name="replacements">replacements for variables</param>
         /// <param name="libName">library key if more than one library was initialized</param>
         /// <param name="overridePrefix">override the prefix instead of using the one passed in the beginning</param>
+        /// <typeparam name="T">The type of the lib key, so enums can be used for this</typeparam>
         /// <returns>textstring: string</returns>
-        string GetTextString(
+        string GetTextString<T>(
             string textString,
             string fallback = "",
             IDictionary<string, string> replacements = null,
-            int libName = -1,
+            T libName = default,
             bool overridePrefix = false);
     }
 }

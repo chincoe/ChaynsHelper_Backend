@@ -44,21 +44,21 @@ namespace ChaynsHelper.InternalServices.TextString
                 _handlers.TryAdd(key.ToString(), new TextstringHandler(value.LibName, value.Language ?? "Ger", value.Prefix ?? "", _logger));
             }
         }
-        
-        public string GetTextString(
-            string textString,
+
+        public string GetTextString<T>(string textString,
             string fallback = "",
             IDictionary<string, string> replacements = null,
-            string libName = null,
+            T libName = default,
             bool overridePrefix = false)
         {
             string result = fallback;
             TextstringHandler handler = null;
             try
             {
-                handler = libName == null
-                    ? _handlers.First().Value
-                    : _handlers[libName];
+                if (!_handlers.TryGetValue(libName.ToString(), out handler))
+                {
+                    handler = _handlers.First().Value;
+                }
             }
             catch (Exception ex)
             {
@@ -71,6 +71,7 @@ namespace ChaynsHelper.InternalServices.TextString
                     {"fallback", fallback}
                 });
             }
+            
             if (handler != null)
             {
                 try
@@ -103,16 +104,16 @@ namespace ChaynsHelper.InternalServices.TextString
             string textString,
             string fallback = "",
             IDictionary<string, string> replacements = null,
-            int libName = -1,
+            string libName = null,
             bool overridePrefix = false)
         {
             string result = fallback;
             TextstringHandler handler = null;
             try
             {
-                handler = libName >= 0
+                handler = libName == null
                     ? _handlers.First().Value
-                    : _handlers[libName.ToString()];
+                    : _handlers[libName];
             }
             catch (Exception ex)
             {
